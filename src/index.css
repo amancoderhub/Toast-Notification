@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Theme Configuration */
+@layer base {
+  /**
+   * Defining CSS variables for your design system.
+   * These are HSL values so they work well with Tailwind’s theming.
+   * If you change the format (e.g., to hex or rgb), remember to also update tailwind.config.ts accordingly.
+   */
+   
+  :root {
+    /* Base background and text colors for light mode */
+    --background: 0 0% 100%; /* white */
+    --foreground: 222.2 84% 4.9%; /* near-black */
+
+    /* Card and popover components inherit the base look */
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+
+    /* Brand primary and its contrast */
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary UI elements */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: var(--primary);
+
+    /* Muted or less prominent UI elements */
+    --muted: var(--secondary);
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent colors for subtle highlights */
+    --accent: var(--secondary);
+    --accent-foreground: var(--primary);
+
+    /* Destructive actions like delete */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: var(--primary-foreground);
+
+    /* Border and form input styling */
+    --border: 214.3 31.8% 91.4%;
+    --input: var(--border);
+    --ring: var(--foreground);
+
+    /* Shared radius for rounded corners */
+    --radius: 0.5rem;
+
+    /* Sidebar-specific design tokens */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Toast notification theme - light mode */
+    --toast-success: 142 76% 36%;
+    --toast-success-foreground: 0 0% 100%;
+    --toast-error: 0 84% 60%;
+    --toast-error-foreground: 0 0% 100%;
+    --toast-warning: 45 93% 47%;
+    --toast-warning-foreground: 0 0% 100%;
+    --toast-info: 217 91% 60%;
+    --toast-info-foreground: 0 0% 100%;
+    --toast-action: 271 91% 65%;
+    --toast-action-foreground: 0 0% 100%;
+    --toast-loading: 215 28% 17%;
+    --toast-loading-foreground: 0 0% 100%;
+    --toast-persistent: 174 72% 56%;
+    --toast-persistent-foreground: 0 0% 100%;
+  }
+
+  /* Dark Theme Overrides */
+  .dark {
+    --background: 224 71% 4%; /* very dark */
+    --foreground: 213 31% 91%; /* light text */
+
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 215 28% 17%;
+    --secondary-foreground: var(--primary);
+
+    --muted: var(--secondary);
+    --muted-foreground: 217 10% 65%;
+
+    --accent: var(--secondary);
+    --accent-foreground: var(--primary);
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: var(--primary);
+
+    --border: var(--secondary);
+    --input: var(--border);
+    --ring: 216 34% 17%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Toasts - dark mode versions */
+    --toast-success: 142 76% 36%;
+    --toast-success-foreground: 0 0% 100%;
+    --toast-error: 0 84% 60%;
+    --toast-error-foreground: 0 0% 100%;
+    --toast-warning: 45 93% 47%;
+    --toast-warning-foreground: 0 0% 100%;
+    --toast-info: 217 91% 60%;
+    --toast-info-foreground: 0 0% 100%;
+    --toast-action: 271 91% 65%;
+    --toast-action-foreground: 0 0% 100%;
+    --toast-loading: 215 28% 17%;
+    --toast-loading-foreground: 0 0% 100%;
+    --toast-persistent: 174 72% 56%;
+    --toast-persistent-foreground: 0 0% 100%;
+  }
+}
+
+/* Global Style Resets */
+@layer base {
+  /* Apply border color globally using Tailwind’s `border-border` token */
+  * {
+    @apply border-border;
+  }
+
+  /* Apply background and text color globally */
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Optional: Default to dark theme on load */
+  html {
+    @apply dark;
+  }
+}
+
+/* Custom Utilities (Toast Positioning) */
+@layer utilities {
+  /* Toast can be positioned in various corners or centers */
+  .toast-position-top-right {
+    @apply top-4 right-4;
+  }
+
+  .toast-position-top-left {
+    @apply top-4 left-4;
+  }
+
+  .toast-position-bottom-right {
+    @apply bottom-4 right-4;
+  }
+
+  .toast-position-bottom-left {
+    @apply bottom-4 left-4;
+  }
+
+  .toast-position-top-center {
+    @apply top-4 left-1/2 -translate-x-1/2;
+  }
+
+  .toast-position-bottom-center {
+    @apply bottom-4 left-1/2 -translate-x-1/2;
+  }
+}
